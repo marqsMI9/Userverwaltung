@@ -20,6 +20,7 @@ function menu(){
 }
 
 function useradd(){
+        username=$(kdialog --inputbox "Geben Sie den zuhinzufügenden Nutzer an:")
         
 }
 
