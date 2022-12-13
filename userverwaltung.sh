@@ -2,7 +2,7 @@
 
 #Userverwaltung
 #Autor: Calvin, Markus, Metehan, Michael
-#Email: hoermannca@elektronikschule.de, roesslerma@elektronikschule.de, karakocame@elektronikschule.de, roesslermi@elektronikschule.de
+#E-mail: hoermannca@elektronikschule.de, roesslerma@elektronikschule.de, karakocame@elektronikschule.de, roesslermi@elektronikschule.de
 #Version: 1.0.0
 
 function menu(){
@@ -19,9 +19,24 @@ function menu(){
         read -p "| Eingabe: " EINGABE
 }
 
-function 
 
-
+function groupdel(){
+        groupname=$(kdialog --inputbox "Wie ist der Name der Gruppe die Sie löschen wollen:")
+        löschort=$(kdialog --inputbox "Wo wollen sie die gruppe löschen:")
+        until [ $yesno == 0 ]
+	do
+              yesno=$(kdialog --yesno "Sind sie sich sicher, dass Sie die Gruppe $groupname in $löschort  löschen wollen?")
+        done
+        id $groupname 2&> /dev/null
+	if [ $? = 0 ]
+	then 
+		kdialog --msgbox "Group $username wurde nicht gefunden. "
+	else 
+		kdialog --msgbox "User $username wird gelöscht."
+                cd $löschort
+                groupdel $groupname
+        fi
+}
 while :
 do
           menu
