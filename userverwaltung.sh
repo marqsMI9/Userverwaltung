@@ -26,10 +26,12 @@ function useradd(){
 	do
               yesno=$(kdialog --yesno "Sind sie sich sicher, dass Sie den Benutzer $username in $speicherort speichernwollen?")
         done
-        su -c whoami $username
-        if [ $? -eq 0 ]; then
-                echo "Ein User namens $username exisitiert bereits auf diesem System."
-        else
+        id $username 2&> /dev/null
+	if [ $? = 0 ]
+	then 
+		kdialog --msgbox "User $username vorhanden"
+	else 
+		kdialog --msgbox "User $username wird erstellt."
                 cd $speicherort
                 useradd $username
         fi
