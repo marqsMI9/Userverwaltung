@@ -19,7 +19,9 @@ function menu(){
         read -p "| Eingabe: " EINGABE
 }
 
-function 
+function useradd(){
+        
+}
 
 
 while :
